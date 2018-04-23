@@ -15,6 +15,8 @@
 */
 package net.objecthunter.exp4j.function;
 
+import units.qual.*;
+
 /**
  * Class representing the builtin functions available for use in expressions
  */
@@ -48,25 +50,25 @@ public class Functions {
     static {
         builtinFunctions[INDEX_SIN] = new Function("sin") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.sin(args[0]);
             }
         };
         builtinFunctions[INDEX_COS] = new Function("cos") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.cos(args[0]);
             }
         };
         builtinFunctions[INDEX_TAN] = new Function("tan") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.tan(args[0]);
             }
         };
         builtinFunctions[INDEX_COT] = new Function("cot") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 double tan = Math.tan(args[0]);
                 if (tan == 0d) {
                     throw new ArithmeticException("Division by zero in cotangent!");
@@ -76,115 +78,115 @@ public class Functions {
         };
         builtinFunctions[INDEX_LOG] = new Function("log") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.log(args[0]);
             }
         };
         builtinFunctions[INDEX_LOG2] = new Function("log2") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.log(args[0]) / Math.log(2d);
             }
         };
         builtinFunctions[INDEX_LOG10] = new Function("log10") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.log10(args[0]);
             }
         };
         builtinFunctions[INDEX_LOG1P] = new Function("log1p") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.log1p(args[0]);
             }
         };
         builtinFunctions[INDEX_ABS] = new Function("abs") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.abs(args[0]);
             }
         };
         builtinFunctions[INDEX_ACOS] = new Function("acos") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.acos(args[0]);
             }
         };
         builtinFunctions[INDEX_ASIN] = new Function("asin") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.asin(args[0]);
             }
         };
         builtinFunctions[INDEX_ATAN] = new Function("atan") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.atan(args[0]);
             }
         };
         builtinFunctions[INDEX_CBRT] = new Function("cbrt") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.cbrt(args[0]);
             }
         };
         builtinFunctions[INDEX_FLOOR] = new Function("floor") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.floor(args[0]);
             }
         };
         builtinFunctions[INDEX_SINH] = new Function("sinh") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.sinh(args[0]);
             }
         };
         builtinFunctions[INDEX_SQRT] = new Function("sqrt") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.sqrt(args[0]);
             }
         };
         builtinFunctions[INDEX_TANH] = new Function("tanh") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.tanh(args[0]);
             }
         };
         builtinFunctions[INDEX_COSH] = new Function("cosh") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.cosh(args[0]);
             }
         };
         builtinFunctions[INDEX_CEIL] = new Function("ceil") {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.ceil(args[0]);
             }
         };
         builtinFunctions[INDEX_POW] = new Function("pow", 2) {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.pow(args[0], args[1]);
             }
         };
         builtinFunctions[INDEX_EXP] = new Function("exp", 1) {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.exp(args[0]);
             }
         };
         builtinFunctions[INDEX_EXPM1] = new Function("expm1", 1) {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 return Math.expm1(args[0]);
             }
         };
         builtinFunctions[INDEX_SGN] = new Function("signum", 1) {
             @Override
-            public double apply(double... args) {
+            public double apply(@rad double... args) {
                 if (args[0] > 0) {
                     return 1;
                 } else if (args[0] < 0) {
