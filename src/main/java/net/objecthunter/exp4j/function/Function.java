@@ -16,10 +16,12 @@
 
 package net.objecthunter.exp4j.function;
 
+import units.qual.*;
+
 /**
  * A class representing a Function which can be used in an expression
  */
-public abstract class Function {
+public abstract class Function <R extends @UnknownUnits Double, P extends @UnknownUnits Double> {
 
     protected final String name;
 
@@ -77,7 +79,7 @@ public abstract class Function {
      * @param args the set of arguments used for calculating the function
      * @return the result of the function evaluation
      */
-    public abstract double apply(double... args);
+    public abstract R apply(P... args);
 
     /**
      * Get the set of characters which are allowed for use in Function names.

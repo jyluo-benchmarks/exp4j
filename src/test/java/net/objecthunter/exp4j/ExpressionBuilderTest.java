@@ -31,6 +31,9 @@ import net.objecthunter.exp4j.operator.Operator;
 
 import org.junit.Test;
 
+import units.qual.*;
+import units.UnitsTools;
+
 public class ExpressionBuilderTest {
 
     @Test
@@ -48,7 +51,7 @@ public class ExpressionBuilderTest {
                 .build()
                 .setVariable("x", Math.PI)
                 .evaluate();
-        double expected = cos(Math.PI);
+        double expected = cos(Math.PI * UnitsTools.rad);
         assertEquals(-1d, result, 0d);
     }
 
@@ -1860,7 +1863,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(2 * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(2 * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1869,7 +1872,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(2 * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(2 * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1878,7 +1881,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(-2d * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(-2d * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1887,7 +1890,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(-2d * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(-2d * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1896,7 +1899,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(-E * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(-E * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1905,7 +1908,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(-E * E * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(-E * E * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1914,7 +1917,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(E * E * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(E * E * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1923,7 +1926,7 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build()
                 .setVariable("x", Math.E);
-        assertEquals(E * E * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(E * E * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -1933,7 +1936,7 @@ public class ExpressionBuilderTest {
                 .build()
                 .setVariable("x", Math.E)
                 .setVariable("y", Math.sqrt(2));
-        assertEquals(sqrt(2) * E * Math.cos(Math.E), e.evaluate(), 0d);
+        assertEquals(sqrt(2) * E * Math.cos(Math.E / UnitsTools.rad), e.evaluate(), 0d);
     }
 
     @Test
@@ -2262,9 +2265,9 @@ public class ExpressionBuilderTest {
                 .variables("x")
                 .build();
         for (double x = -10; x < 10; x = x + 0.5d) {
-            expected =
-                    Math.acos(x) * Math.expm1(Math.asin(x)) - Math.exp(Math.atan(x)) + Math.floor(x) + Math.cosh(x)
-                            - Math.sinh(Math.cbrt(x));
+            expected = 
+                    Math.acos(x / UnitsTools.rad) * Math.expm1(Math.asin(x / UnitsTools.rad)) - Math.exp(Math.atan(x / UnitsTools.rad)) + Math.floor(x) + Math.cosh(x)
+                            - Math.sinh(Math.cbrt(x) * UnitsTools.rad);
             if (Double.isNaN(expected)) {
                 assertTrue(Double.isNaN(e.setVariable("x", x).evaluate()));
             } else {
@@ -2478,7 +2481,7 @@ public class ExpressionBuilderTest {
         double expected;
         double varE = Math.E;
         expr = "2^3.4223232 + tan(e)";
-        expected = Math.pow(2, 3.4223232d) + Math.tan(Math.E);
+        expected = Math.pow(2, 3.4223232d) + Math.tan(Math.E * UnitsTools.rad);
         Expression e = new ExpressionBuilder(expr)
                 .variables("e")
                 .build();
